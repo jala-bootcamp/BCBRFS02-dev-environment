@@ -17,4 +17,4 @@ jobs:
         java-version: '21'
 
     - name: Build Docker image with Jib
-      run: ./gradlew jib -Pdockerhub_user=$DOCKERHUB_CREDS_USR -Pdockerhub_token=$DOCKERHUB_CREDS_PSW -Pimage_tag=latest
+      run: ./gradlew jib -Pdockerhub_user=${{ vars.DOCKERHUB_CREDS_USR }} -Pdockerhub_token=${{ vars.DOCKERHUB_CREDS_PSW }} -Pimage_tag=${{ github.sha }}
