@@ -2,6 +2,10 @@ name: Publish Docker Image for Poke Demo with Jib
 
 on: [push]
 
+env:
+  DOCKERHUB_CREDS_USR: ${{ vars.DOCKERHUB_CREDS_USR }}
+  DOCKERHUB_CREDS_PSW: ${{ secrets.DOCKERHUB_CREDS_PSW }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -17,4 +21,4 @@ jobs:
         java-version: '21'
 
     - name: Build Docker image with Jib
-      run: ./gradlew jib -Pdockerhub_user=${{ vars.DOCKERHUB_CREDS_USR }} -Pdockerhub_token=${{ vars.DOCKERHUB_CREDS_PSW }} -Pimage_tag=${{ github.sha }}
+      run: ./gradlew jib -Pdockerhub_user=$DOCKERHUB_CREDS_USR -Pdockerhub_token=$DOCKERHUB_CREDS_PSW -Pimage_tag=${{ github.sha }}
