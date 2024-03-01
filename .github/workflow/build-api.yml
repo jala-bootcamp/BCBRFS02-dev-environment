@@ -1,0 +1,20 @@
+name: Publish Docker Image for Poke Demo with Jib
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up JDK 17
+      uses: actions/setup-java@v2
+      with:
+        java-version: '17'
+        distribution: 'correto'
+
+    - name: Build Docker image with Jib
+      run: ./gradlew jib -Pdockerhub_user=$DOCKERHUB_CREDS_USR -Pdockerhub_token=$DOCKERHUB_CREDS_PSW -Pimage_tag=${IMAGE_VER}
