@@ -70,9 +70,12 @@ jib {
 
 sonar {
   properties {
-    property "sonar.projectKey", "jala-bootcamp_BCBRFS02-dev-environment"
-    property "sonar.organization", "jala-bootcamp"
-    property "sonar.host.url", "https://sonarcloud.io"
+//    property "sonar.projectKey", "jala-bootcamp_BCBRFS02-dev-environment"
+      property "sonar.projectKey", "jala-bootcamp_test-proj"
+      property "sonar.organization", "jala-bootcamp"
+      property "sonar.host.url", "https://sonarcloud.io"
+      property "sonar.projectBaseDir", project.projectDir
+      property "sonar.working.directory", "${project.buildDir}/sonar"
   }
 }
 
